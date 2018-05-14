@@ -1,0 +1,83 @@
+{
+    "name": "infinite-circle",
+    "version": "0.0.1",
+    "description": "The utility for synchronising writing operation in browser.",
+    "main": "lib/infiniteCircle.js",
+    "module": "es/infiniteCircle.js",
+    "scripts": {
+        "preversion": "npm test && npm run lint && npm run build",
+        "postversion": "npm run build && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish",
+        "lint": "node_modules/.bin/eslint -c ./.eslintrc.js --fix './**/*.{js,jsx}' --ignore-path ./.prettierignore",
+        "test": "node_modules/.bin/jest --no-watchman",
+        "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/infiniteCircle.js",
+        "build:es": "cross-env NODE_ENV=es rollup -c -o es/infiniteCircle.js",
+        "build": "npm run build:commonjs && npm run build:es"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mjancarik/infinite-circle.git"
+    },
+    "keywords": [],
+    "author": "Miroslav Jancarik",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mjancarik/infinite-circle/issues"
+    },
+    "publishConfig": {
+        "registry": "http://registry.npmjs.org/"
+    },
+    "homepage": "https://github.com/mjancarik/infinite-circle#readme",
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-eslint": "^8.2.2",
+        "babel-jest": "^22.4.3",
+        "babel-plugin-external-helpers": "^6.22.0",
+        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "coveralls": "^3.0.0",
+        "cross-env": "^5.1.4",
+        "eslint": "^4.19.1",
+        "eslint-config-last": "^0.0.5",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-jasmine": "^2.9.3",
+        "eslint-plugin-jest": "^21.15.0",
+        "eslint-plugin-prettier": "^2.6.0",
+        "eslint-plugin-react": "^7.7.0",
+        "jest": "^22.4.3",
+        "jsdom": "^11.7.0",
+        "prettier": "^1.11.1",
+        "rollup": "^0.57.1",
+        "rollup-plugin-babel": "^3.0.3",
+        "rollup-plugin-commonjs": "^9.1.0",
+        "rollup-plugin-node-resolve": "^3.3.0",
+        "rollup-plugin-uglify": "^3.0.0"
+    },
+    "jest": {
+        "bail": false,
+        "verbose": true,
+        "testEnvironment": "node",
+        "coverageThreshold": {
+            "global": {
+                "functions": 70,
+                "lines": 70,
+                "statements": 70
+            }
+        },
+        "collectCoverageFrom": [
+            "<rootDir>/src/**/*.{js,jsx}"
+        ],
+        "setupFiles": [
+            "<rootDir>/setupJest.js"
+        ],
+        "modulePaths": [
+            "<rootDir>/"
+        ],
+        "testRegex": "(/__tests__/.*|(\\.|/)(Spec))\\.jsx?$"
+    },
+    "dependencies": {},
+    "browserify": {
+        "transform": [
+            "babelify"
+        ]
+    }
+}

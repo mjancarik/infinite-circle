@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Circle should call read method which return right structure for write method 1`] = `
+Array [
+  Object {
+    "lastArgs": Array [
+      Object {
+        "event": "event",
+      },
+    ],
+    "lastExecution": 1,
+    "options": Object {
+      "interval": 60,
+    },
+    "read": [Function],
+    "readedValue": 111,
+    "write": [Function],
+  },
+]
+`;

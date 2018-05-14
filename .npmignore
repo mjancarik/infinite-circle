@@ -1,0 +1,11 @@
+/src
+/coverage
+.babelrc
+.eslintrc.js
+.gitignore
+.npmignore
+.prettierignore
+.travis.yml
+README.md
+rollup.config.js
+setupJest.js
