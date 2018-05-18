@@ -7,5 +7,6 @@
 .prettierignore
 .travis.yml
 README.md
+commitlint.config.js
 rollup.config.js
 setupJest.js
