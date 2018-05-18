@@ -1,17 +1,18 @@
 {
     "name": "infinite-circle",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "The utility for synchronising writing operation in browser.",
     "main": "lib/infiniteCircle.js",
     "module": "es/infiniteCircle.js",
     "scripts": {
         "preversion": "npm test && npm run lint && npm run build",
-        "postversion": "npm run build && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish",
+        "postversion": "npm run build && npm run changelog && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish",
         "lint": "node_modules/.bin/eslint -c ./.eslintrc.js --fix './**/*.{js,jsx}' --ignore-path ./.prettierignore",
         "test": "node_modules/.bin/jest --no-watchman",
         "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/infiniteCircle.js",
         "build:es": "cross-env NODE_ENV=es rollup -c -o es/infiniteCircle.js",
         "build": "npm run build:commonjs && npm run build:es",
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
         "commitmsg": "node_modules/.bin/commitlint -e $GIT_PARAMS",
         "commit": "node_modules/.bin/git-cz"
     },
