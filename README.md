@@ -1,4 +1,4 @@
-# consume-multiple-contexts
+# infinite-circle
 
 [![Build Status](https://travis-ci.org/mjancarik/infinite-circle.svg?branch=master)](https://travis-ci.org/mjancarik/infinite-circle) [![dependencies Status](https://david-dm.org/mjancarik/infinite-circle/status.svg)](https://david-dm.org/mjancarik/infinite-circle)
 [![Coverage Status](https://coveralls.io/repos/github/mjancarik/infinite-circle/badge.svg?branch=master)](https://coveralls.io/github/mjancarik/infinite-circle?branch=master)
