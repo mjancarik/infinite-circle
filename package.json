@@ -12,7 +12,7 @@
         "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/infiniteCircle.js",
         "build:es": "cross-env NODE_ENV=es rollup -c -o es/infiniteCircle.js",
         "build": "npm run build:commonjs && npm run build:es",
-        "commitmsg": "commitlint -e $GIT_PARAMS",
+        "commitmsg": "node_modules/.bin/commitlint -e $GIT_PARAMS",
         "commit": "node_modules/.bin/git-cz"
     },
     "repository": {
