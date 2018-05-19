@@ -10,6 +10,7 @@ export default class Circle {
     this._execute = execute || ((...args) => this._defaultExecute(...args));
 
     this._entries = new Map();
+    this._lockCircle = false;
 
     this._observers = [];
 
