@@ -37,10 +37,10 @@ export default class Infinite {
     const iterators = circles.map(({ circle, args }) =>
       circle.execute(...args)
     );
-    let isEnded = false;
+    let isNextStep = true;
 
-    while (isEnded) {
-      isEnded = iterators.reduce(
+    while (isNextStep) {
+      isNextStep = !iterators.reduce(
         (end, iterator) => end && iterator.next().done,
         true
       );
