@@ -1,3 +1,19 @@
+<a name="0.0.5"></a>
+## [0.0.5](https://github.com/mjancarik/infinite-circle/compare/0.0.4...0.0.5) (2018-05-27)
+
+
+### Features
+
+* **circle:** write function receive circle entry ([c2a9c62](https://github.com/mjancarik/infinite-circle/commit/c2a9c62))
+
+
+### BREAKING CHANGES
+
+* **circle:** change type of first argument for write function to passing complete circle entry
+with payload
+
+
+
 <a name="0.0.4"></a>
 ## [0.0.4](https://github.com/mjancarik/infinite-circle/compare/0.0.3...0.0.4) (2018-05-19)
 
