@@ -3,17 +3,17 @@
 exports[`Circle should call read method which return right structure for write method 1`] = `
 Array [
   Object {
-    "lastArgs": Array [
+    "args": Array [
       Object {
         "event": "event",
       },
     ],
-    "lastExecution": 1,
     "options": Object {
       "interval": 60,
     },
+    "payload": 111,
     "read": [Function],
-    "readedValue": 111,
+    "time": 1,
     "write": [Function],
   },
 ]

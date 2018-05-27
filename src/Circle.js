@@ -38,8 +38,8 @@ export default class Circle {
       read,
       write,
       options,
-      lastExecution: Date.now() - options.interval - 1,
-      lastArgs: []
+      time: Date.now() - options.interval - 1,
+      args: []
     });
 
     if (this._entries.size === 1) {
@@ -65,19 +65,19 @@ export default class Circle {
     const now = Date.now();
 
     return circleEntries.map(entry => {
-      entry.lastExecution = now;
-      entry.lastArgs = args;
-      let readedValue =
+      entry.time = now;
+      entry.args = args;
+      let payload =
         typeof entry.read === 'function' ? entry.read(...args) : null;
 
-      return Object.assign({ readedValue }, entry);
+      return Object.assign({ payload }, entry);
     });
   }
 
   write(circleEntries, ...args) {
     return circleEntries.map(entry => {
       if (typeof entry.write === 'function') {
-        entry.write(entry.readedValue, ...args);
+        entry.write(entry, ...args);
       }
     });
   }
@@ -92,7 +92,7 @@ export default class Circle {
     this._lockCircle = false;
 
     let isCallAllEntriesWithArgs = !!Array.from(this._entries.values()).filter(
-      entry => entry.lastArgs !== args
+      entry => entry.args !== args
     ).length;
 
     if (!isCallAllEntriesWithArgs) {
@@ -110,7 +110,7 @@ export default class Circle {
     const now = Date.now();
 
     return Array.from(circleEntries.values()).filter(loopEntry => {
-      return loopEntry.lastExecution + loopEntry.options.interval <= now;
+      return loopEntry.time + loopEntry.options.interval <= now;
     });
   }
 

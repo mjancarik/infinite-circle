@@ -9,11 +9,13 @@ describe('Circle', () => {
     write() {},
     options: {
       interval: 60
-    }
+    },
+    args: [],
+    time: -60
   };
 
   const args = { event: 'event' };
-  const readedValue = 111;
+  const payload = 111;
 
   const NativeDate = Date;
   const MockedDate = toMock(Date);
@@ -49,7 +51,7 @@ describe('Circle', () => {
   });
 
   it('should call read method which return right structure for write method', () => {
-    spyOn(entry, 'read').and.returnValue(readedValue);
+    spyOn(entry, 'read').and.returnValue(payload);
 
     circle.register(entry);
     const entries = Array.from(circle.getEntries().values());
@@ -63,11 +65,14 @@ describe('Circle', () => {
 
     circle.register(entry);
     const entries = Array.from(circle.getEntries().values()).map(entry =>
-      Object.assign({ readedValue }, entry)
+      Object.assign({ payload }, entry)
     );
 
     circle.write(entries, args);
 
-    expect(entry.write).toHaveBeenCalledWith(readedValue, args);
+    expect(entry.write).toHaveBeenCalledWith(
+      Object.assign({ payload }, entry),
+      args
+    );
   });
 });
