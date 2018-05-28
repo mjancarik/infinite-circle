@@ -28,7 +28,7 @@
         "url": "https://github.com/mjancarik/infinite-circle/issues"
     },
     "publishConfig": {
-        "registry": "http://registry.npmjs.org/"
+        "registry": "https://registry.npmjs.org/"
     },
     "homepage": "https://github.com/mjancarik/infinite-circle#readme",
     "devDependencies": {
