@@ -31,14 +31,14 @@ export default class Circle {
     return this._entries;
   }
 
-  register({ read, write, options = { interval: 180 } }) {
+  register({ read, write, meta = { interval: 180 } }) {
     let id = uuid();
 
     this._entries.set(id, {
       read,
       write,
-      options,
-      time: Date.now() - options.interval - 1,
+      meta,
+      time: Date.now() - meta.interval - 1,
       args: []
     });
 
@@ -110,7 +110,7 @@ export default class Circle {
     const now = Date.now();
 
     return Array.from(circleEntries.values()).filter(loopEntry => {
-      return loopEntry.time + loopEntry.options.interval <= now;
+      return loopEntry.time + loopEntry.meta.interval <= now;
     });
   }
 
