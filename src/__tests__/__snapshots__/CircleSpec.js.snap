@@ -8,7 +8,7 @@ Array [
         "event": "event",
       },
     ],
-    "options": Object {
+    "meta": Object {
       "interval": 60,
     },
     "payload": 111,

@@ -7,7 +7,7 @@ describe('Circle', () => {
   const entry = {
     read() {},
     write() {},
-    options: {
+    meta: {
       interval: 60
     },
     args: [],
