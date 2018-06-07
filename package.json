@@ -1,6 +1,6 @@
 {
     "name": "infinite-circle",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "The utility for synchronising writing operation in browser.",
     "main": "lib/infiniteCircle.js",
     "module": "es/infiniteCircle.js",

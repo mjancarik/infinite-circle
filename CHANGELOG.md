@@ -1,3 +1,18 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/mjancarik/infinite-circle/compare/0.1.0...0.2.0) (2018-06-07)
+
+
+### Code Refactoring
+
+* **circle:** rename property in circle entry from options to meta ([83e13ff](https://github.com/mjancarik/infinite-circle/commit/83e13ff))
+
+
+### BREAKING CHANGES
+
+* **circle:** change circle entry structure
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/mjancarik/infinite-circle/compare/0.0.5...0.1.0) (2018-05-27)
 
