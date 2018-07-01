@@ -1,4 +1,5 @@
 import uuid from './uuid';
+import arraysEqual from './arraysEqual';
 
 export default class Circle {
   constructor({ listen, unlisten, filter, execute } = {}) {
@@ -91,9 +92,10 @@ export default class Circle {
     let modifiedEntries = yield* this._execute(...args);
     this._lockCircle = false;
 
-    let isCallAllEntriesWithArgs = !!Array.from(this._entries.values()).filter(
-      entry => entry.args !== args
-    ).length;
+    const originalEntries = Array.from(this.getEntries().values());
+    const isCallAllEntriesWithArgs =
+      originalEntries.filter(entry => arraysEqual(entry.args, args)).length ===
+      originalEntries.length;
 
     if (!isCallAllEntriesWithArgs) {
       this.notify(...args);
