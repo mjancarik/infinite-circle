@@ -60,7 +60,7 @@ describe('Circle', () => {
     expect(entry.read).toHaveBeenCalledWith(args);
   });
 
-  it('should call read method which return right structure for write method', () => {
+  it('should call write method with right structure', () => {
     spyOn(entry, 'write');
 
     circle.register(entry);
