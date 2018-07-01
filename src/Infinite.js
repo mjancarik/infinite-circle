@@ -57,8 +57,8 @@ export default class Infinite {
       let copyOfScheduledCircles = this._scheduledCircles.values();
       this._scheduledCircles = new Map();
 
-      this._execute(Array.from(copyOfScheduledCircles));
       this._isSuspendedExecution = false;
+      this._execute(Array.from(copyOfScheduledCircles));
     } else {
       this._isSuspendedExecution = true;
       this._requstAnimationFrame()(this._suspendExecutionWithContext);
