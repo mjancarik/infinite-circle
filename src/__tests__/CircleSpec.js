@@ -5,8 +5,12 @@ describe('Circle', () => {
   let circle = null;
 
   const entry = {
-    read() {},
-    write() {},
+    read() {
+      return 1;
+    },
+    write() {
+      return true;
+    },
     meta: {
       interval: 60
     },
@@ -74,5 +78,76 @@ describe('Circle', () => {
       Object.assign({ payload }, entry),
       args
     );
+  });
+
+  describe('execute method', () => {
+    function run(iterator) {
+      let result = iterator.next();
+
+      while (result.done === false) {
+        result = iterator.next();
+      }
+
+      return result;
+    }
+
+    it('should return empty array for locked circle', () => {
+      circle.register(entry);
+
+      circle.execute().next();
+      let iterator = circle.execute(args);
+      let iterableObject = run(iterator);
+
+      expect(iterableObject.value).toEqual([]);
+      expect(iterableObject.done).toBeTruthy();
+    });
+
+    it('should return empty array for empty circle', () => {
+      let iterator = circle.execute(args);
+
+      let iterableObject = run(iterator);
+
+      expect(iterableObject.value).toEqual([]);
+      expect(iterableObject.done).toBeTruthy();
+    });
+
+    it('should return empty array if all entries are filtered', () => {
+      MockedDate.now.and.returnValue(60);
+      circle.register(entry);
+      let iterator = circle.execute(args);
+      MockedDate.now.and.returnValue(30);
+
+      let iterableObject = run(iterator);
+
+      expect(iterableObject.value).toEqual([]);
+      expect(iterableObject.done).toBeTruthy();
+    });
+
+    it('should return empty array if all entries are filtered', () => {
+      MockedDate.now.and.returnValue(60);
+      circle.register(entry);
+      let iterator = circle.execute(args);
+      MockedDate.now.and.returnValue(61);
+
+      let iterableObject = run(iterator);
+
+      expect(iterableObject.value).toEqual([true]);
+      expect(iterableObject.done).toBeTruthy();
+    });
+
+    it('should call notify method if all entries were not be called with defined arguments', () => {
+      spyOn(circle, 'notify');
+      MockedDate.now.and.returnValue(60);
+      circle.register(entry);
+      let iterator = circle.execute(args);
+      MockedDate.now.and.returnValue(30);
+
+      let iterableObject = run(iterator);
+
+      expect(circle.notify).toHaveBeenCalledWith(args);
+
+      expect(iterableObject.value).toEqual([]);
+      expect(iterableObject.done).toBeTruthy();
+    });
   });
 });

@@ -78,7 +78,7 @@ export default class Circle {
   write(circleEntries, ...args) {
     return circleEntries.map(entry => {
       if (typeof entry.write === 'function') {
-        entry.write(entry, ...args);
+        return entry.write(entry, ...args);
       }
     });
   }
@@ -105,10 +105,6 @@ export default class Circle {
   }
 
   _defaultFilter(circleEntries) {
-    // if (args.length === 0 ) {
-    //     return [];
-    // }
-
     const now = Date.now();
 
     return Array.from(circleEntries.values()).filter(loopEntry => {
