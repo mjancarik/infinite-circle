@@ -1,3 +1,14 @@
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/mjancarik/infinite-circle/compare/0.2.0...0.2.1) (2018-07-05)
+
+
+### Bug Fixes
+
+* **circle:** arguments must be compare as arrays equal ([5781fae](https://github.com/mjancarik/infinite-circle/commit/5781fae))
+* **infinite:** suspended flag must be reset before execution loop ([6ce8e5b](https://github.com/mjancarik/infinite-circle/commit/6ce8e5b))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/mjancarik/infinite-circle/compare/0.1.0...0.2.0) (2018-06-07)
 
