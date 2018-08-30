@@ -1,6 +1,6 @@
 {
     "name": "infinite-circle",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "The utility for synchronising writing operation in browser.",
     "main": "lib/infiniteCircle.js",
     "module": "es/infiniteCircle.js",
@@ -21,7 +21,13 @@
         "type": "git",
         "url": "git+https://github.com/mjancarik/infinite-circle.git"
     },
-    "keywords": ["infinte", "loop", "synchronising", "read", "write"],
+    "keywords": [
+        "infinte",
+        "loop",
+        "synchronising",
+        "read",
+        "write"
+    ],
     "author": "Miroslav Jancarik",
     "license": "ISC",
     "bugs": {
