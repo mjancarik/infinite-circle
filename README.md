@@ -5,7 +5,7 @@
 ![GitHub package version](https://img.shields.io/github/package-json/v/mjancarik/infinite-circle.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-The utility for synchronising reading and writing operation in browser. The infinite is a smart and automatic on and off loop for saving resources.
+The utility for synchronising reading and writing operation in browser. The infinite is a smart and automatic on and off loop for saving resources. It's use full for reading a writing operation on DOM which may normally cause layout thrashing.
 
 ## Installation
 
@@ -45,6 +45,7 @@ let img1CircleId = visibilityCircle.register({
         }
     }
 });
+// register more elements
 
 // register circle to synchronising infinite loop
 let infinite = new Infinite();

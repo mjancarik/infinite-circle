@@ -21,7 +21,7 @@
         "type": "git",
         "url": "git+https://github.com/mjancarik/infinite-circle.git"
     },
-    "keywords": [],
+    "keywords": ["infinte", "loop", "synchronising", "read", "write"],
     "author": "Miroslav Jancarik",
     "license": "ISC",
     "bugs": {
