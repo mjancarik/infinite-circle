@@ -1,3 +1,8 @@
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/mjancarik/infinite-circle/compare/0.2.2...0.2.3) (2018-09-07)
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/mjancarik/infinite-circle/compare/0.2.1...0.2.2) (2018-08-30)
 
