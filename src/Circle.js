@@ -1,9 +1,9 @@
-import uuid from './uuid';
+import uid from 'easy-uid';
 import arraysEqual from './arraysEqual';
 
 export default class Circle {
   constructor({ listen, unlisten, filter, execute } = {}) {
-    this.id = uuid();
+    this.id = uid();
 
     this._listen = listen || (() => {});
     this._unlisten = unlisten || (() => {});
@@ -33,7 +33,7 @@ export default class Circle {
   }
 
   register({ read, write, meta = { interval: 180 } }) {
-    let id = uuid();
+    let id = uid();
 
     this._entries.set(id, {
       read,

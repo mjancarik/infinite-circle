@@ -26,6 +26,11 @@ describe('Circle', () => {
 
   beforeEach(() => {
     spyOn(MockedDate, 'now').and.returnValue(1);
+    spyOn(MockedDate.prototype, 'getTime').and.returnValue({
+      toString() {
+        return 'random';
+      }
+    });
 
     circle = new Circle();
     Date = MockedDate; // eslint-disable-line no-global-assign
