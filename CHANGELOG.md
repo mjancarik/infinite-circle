@@ -1,3 +1,13 @@
+<a name="0.2.4"></a>
+## [0.2.4](https://github.com/mjancarik/infinite-circle/compare/0.2.3...0.2.4) (2018-11-13)
+
+
+### Bug Fixes
+
+* **infinite:** fixed typo in _requestAnimationFrame method ([29bbc7f](https://github.com/mjancarik/infinite-circle/commit/29bbc7f))
+
+
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://github.com/mjancarik/infinite-circle/compare/0.2.2...0.2.3) (2018-09-07)
 
