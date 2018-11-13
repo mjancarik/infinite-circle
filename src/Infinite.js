@@ -50,7 +50,7 @@ export default class Infinite {
   _suspendExecution() {
     if (
       this._nextExecutionTime <= Date.now() ||
-      !this._requstAnimationFrame()
+      !this._requestAnimationFrame()
     ) {
       this._nextExecutionTime = 0;
 
@@ -61,11 +61,11 @@ export default class Infinite {
       this._execute(Array.from(copyOfScheduledCircles));
     } else {
       this._isSuspendedExecution = true;
-      this._requstAnimationFrame()(this._suspendExecutionWithContext);
+      this._requestAnimationFrame()(this._suspendExecutionWithContext);
     }
   }
 
-  _requstAnimationFrame() {
+  _requestAnimationFrame() {
     return typeof window !== undefined && window.requestAnimationFrame;
   }
 }
