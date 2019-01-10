@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mjancarik/infinite-circle.svg?branch=master)](https://travis-ci.org/mjancarik/infinite-circle) [![dependencies Status](https://david-dm.org/mjancarik/infinite-circle/status.svg)](https://david-dm.org/mjancarik/infinite-circle)
 [![Coverage Status](https://coveralls.io/repos/github/mjancarik/infinite-circle/badge.svg?branch=master)](https://coveralls.io/github/mjancarik/infinite-circle?branch=master)
-![GitHub package version](https://img.shields.io/github/package-json/v/mjancarik/infinite-circle.svg)
+[![NPM package version](https://img.shields.io/npm/v/infinite-circle/latest.svg)](https://www.npmjs.com/package/infinite-circle)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 The utility for synchronising reading and writing operation in browser. The infinite is a smart and automatic on and off loop for saving resources. It's use full for reading a writing operation on DOM which may normally cause layout thrashing.
