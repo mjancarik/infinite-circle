@@ -13,7 +13,6 @@
     "build:es": "cross-env NODE_ENV=es rollup -c -o es/infiniteCircle.js",
     "build": "npm run build:commonjs && npm run build:es",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
-    "commitmsg": "node_modules/.bin/commitlint -e $GIT_PARAMS",
     "commit": "node_modules/.bin/git-cz"
   },
   "repository": {
@@ -102,7 +101,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run lint",
+      "commit-msg": "node_modules/.bin/commitlint -e $GIT_PARAMS"
     }
   },
   "config": {
