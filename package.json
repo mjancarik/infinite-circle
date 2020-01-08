@@ -1,109 +1,113 @@
 {
-    "name": "infinite-circle",
-    "version": "0.2.4",
-    "description": "The utility for synchronising writing operation in browser.",
-    "main": "lib/infiniteCircle.js",
-    "module": "es/infiniteCircle.js",
-    "scripts": {
-        "preversion": "npm test && npm run lint && npm run build",
-        "postversion": "npm run build && npm run changelog && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish",
-        "lint": "node_modules/.bin/eslint -c ./.eslintrc.js --fix './**/*.{js,jsx}' --ignore-path ./.prettierignore",
-        "test": "node_modules/.bin/jest --no-watchman",
-        "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/infiniteCircle.js",
-        "build:es": "cross-env NODE_ENV=es rollup -c -o es/infiniteCircle.js",
-        "build": "npm run build:commonjs && npm run build:es",
-        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
-        "precommit": "npm run lint",
-        "commitmsg": "node_modules/.bin/commitlint -e $GIT_PARAMS",
-        "commit": "node_modules/.bin/git-cz"
+  "name": "infinite-circle",
+  "version": "0.2.4",
+  "description": "The utility for synchronising writing operation in browser.",
+  "main": "lib/infiniteCircle.js",
+  "module": "es/infiniteCircle.js",
+  "scripts": {
+    "preversion": "npm test && npm run lint && npm run build",
+    "postversion": "npm run build && npm run changelog && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish",
+    "lint": "node_modules/.bin/eslint -c ./.eslintrc.js --fix './**/*.{js,jsx}' --ignore-path ./.prettierignore",
+    "test": "node_modules/.bin/jest --no-watchman",
+    "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/infiniteCircle.js",
+    "build:es": "cross-env NODE_ENV=es rollup -c -o es/infiniteCircle.js",
+    "build": "npm run build:commonjs && npm run build:es",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
+    "commitmsg": "node_modules/.bin/commitlint -e $GIT_PARAMS",
+    "commit": "node_modules/.bin/git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjancarik/infinite-circle.git"
+  },
+  "keywords": [
+    "infinte",
+    "loop",
+    "synchronising",
+    "read",
+    "write"
+  ],
+  "author": "Miroslav Jancarik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjancarik/infinite-circle/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "homepage": "https://github.com/mjancarik/infinite-circle#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-external-helpers": "^7.7.4",
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "^1.7.0",
+    "commitizen": "^4.0.3",
+    "conventional-changelog-cli": "^2.0.31",
+    "coveralls": "^3.0.9",
+    "cross-env": "^6.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-last": "^0.0.5",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-jasmine": "^4.1.0",
+    "eslint-plugin-jest": "^23.3.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "husky": "^4.0.1",
+    "jest": "^24.9.0",
+    "jsdom": "^15.2.1",
+    "prettier": "^1.19.1",
+    "rollup": "^1.29.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "to-mock": "^1.5.5"
+  },
+  "jest": {
+    "bail": false,
+    "verbose": true,
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "functions": 30,
+        "lines": 30,
+        "statements": 30
+      }
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/mjancarik/infinite-circle.git"
-    },
-    "keywords": [
-        "infinte",
-        "loop",
-        "synchronising",
-        "read",
-        "write"
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{js,jsx}"
     ],
-    "author": "Miroslav Jancarik",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/mjancarik/infinite-circle/issues"
-    },
-    "publishConfig": {
-        "registry": "https://registry.npmjs.org/"
-    },
-    "homepage": "https://github.com/mjancarik/infinite-circle#readme",
-    "devDependencies": {
-        "@babel/core": "^7.7.7",
-        "@babel/plugin-external-helpers": "^7.7.4",
-        "@commitlint/cli": "^8.3.4",
-        "@commitlint/config-conventional": "^8.3.4",
-        "babel-core": "^6.26.3",
-        "babel-eslint": "^10.0.3",
-        "babel-jest": "^24.9.0",
-        "babel-plugin-external-helpers": "^6.22.0",
-        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-        "babel-preset-env": "^1.7.0",
-        "commitizen": "^4.0.3",
-        "conventional-changelog-cli": "^2.0.31",
-        "coveralls": "^3.0.9",
-        "cross-env": "^6.0.3",
-        "cz-conventional-changelog": "^3.0.2",
-        "eslint": "^6.8.0",
-        "eslint-config-last": "^0.0.5",
-        "eslint-config-prettier": "^6.9.0",
-        "eslint-plugin-jasmine": "^4.1.0",
-        "eslint-plugin-jest": "^23.3.0",
-        "eslint-plugin-prettier": "^3.1.2",
-        "eslint-plugin-react": "^7.17.0",
-        "husky": "^4.0.1",
-        "jest": "^24.9.0",
-        "jsdom": "^15.2.1",
-        "prettier": "^1.19.1",
-        "rollup": "^1.29.0",
-        "rollup-plugin-babel": "^4.3.3",
-        "rollup-plugin-commonjs": "^10.1.0",
-        "rollup-plugin-node-resolve": "^5.2.0",
-        "rollup-plugin-uglify": "^6.0.4",
-        "to-mock": "^1.5.5"
-    },
-    "jest": {
-        "bail": false,
-        "verbose": true,
-        "testEnvironment": "node",
-        "coverageThreshold": {
-            "global": {
-                "functions": 30,
-                "lines": 30,
-                "statements": 30
-            }
-        },
-        "collectCoverageFrom": [
-            "<rootDir>/src/**/*.{js,jsx}"
-        ],
-        "setupFiles": [
-            "<rootDir>/setupJest.js"
-        ],
-        "modulePaths": [
-            "<rootDir>/"
-        ],
-        "testRegex": "(/__tests__/.*|(\\.|/)(Spec))\\.jsx?$"
-    },
-    "dependencies": {
-        "easy-uid": "^1.0.1"
-    },
-    "browserify": {
-        "transform": [
-            "babelify"
-        ]
-    },
-    "config": {
-        "commitizen": {
-            "path": "node_modules/cz-conventional-changelog"
-        }
+    "setupFiles": [
+      "<rootDir>/setupJest.js"
+    ],
+    "modulePaths": [
+      "<rootDir>/"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(Spec))\\.jsx?$"
+  },
+  "dependencies": {
+    "easy-uid": "^1.0.1"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
     }
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
 }
