@@ -48,10 +48,7 @@ export default class Infinite {
   }
 
   _suspendExecution() {
-    if (
-      this._nextExecutionTime <= Date.now() ||
-      !this._requestAnimationFrame()
-    ) {
+    if (this._nextExecutionTime <= Date.now()) {
       this._nextExecutionTime = 0;
 
       let copyOfScheduledCircles = this._scheduledCircles.values();
@@ -61,7 +58,12 @@ export default class Infinite {
       this._execute(Array.from(copyOfScheduledCircles));
     } else {
       this._isSuspendedExecution = true;
-      this._requestAnimationFrame()(this._suspendExecutionWithContext);
+
+      if (this._requestAnimationFrame()) {
+        this._requestAnimationFrame()(this._suspendExecutionWithContext);
+      } else {
+        setTimeout(this._suspendExecutionWithContext, 1000 / 60);
+      }
     }
   }
 
