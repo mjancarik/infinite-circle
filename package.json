@@ -92,7 +92,7 @@
     "testRegex": "(/__tests__/.*|(\\.|/)(Spec))\\.jsx?$"
   },
   "dependencies": {
-    "easy-uid": "^1.0.1"
+    "easy-uid": "^1.0.2"
   },
   "browserify": {
     "transform": [
