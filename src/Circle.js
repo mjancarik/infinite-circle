@@ -23,7 +23,7 @@ export default class Circle {
   }
 
   notify(...args) {
-    this._observers.map(listener => {
+    this._observers.map((listener) => {
       listener(...args);
     });
   }
@@ -40,7 +40,7 @@ export default class Circle {
       write,
       meta,
       time: Date.now() - meta.interval - 1,
-      args: []
+      args: [],
     });
 
     if (this._entries.size === 1) {
@@ -65,7 +65,7 @@ export default class Circle {
   read(circleEntries, ...args) {
     const now = Date.now();
 
-    return circleEntries.map(entry => {
+    return circleEntries.map((entry) => {
       entry.time = now;
       entry.args = args;
       let payload =
@@ -76,7 +76,7 @@ export default class Circle {
   }
 
   write(circleEntries, ...args) {
-    return circleEntries.map(entry => {
+    return circleEntries.map((entry) => {
       if (typeof entry.write === 'function') {
         return entry.write(entry, ...args);
       }
@@ -94,8 +94,8 @@ export default class Circle {
 
     const originalEntries = Array.from(this.getEntries().values());
     const isCallAllEntriesWithArgs =
-      originalEntries.filter(entry => arraysEqual(entry.args, args)).length ===
-      originalEntries.length;
+      originalEntries.filter((entry) => arraysEqual(entry.args, args))
+        .length === originalEntries.length;
 
     if (!isCallAllEntriesWithArgs) {
       this.notify(...args);
@@ -107,7 +107,7 @@ export default class Circle {
   _defaultFilter(circleEntries) {
     const now = Date.now();
 
-    return Array.from(circleEntries.values()).filter(loopEntry => {
+    return Array.from(circleEntries.values()).filter((loopEntry) => {
       return loopEntry.time + loopEntry.meta.interval <= now;
     });
   }

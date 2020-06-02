@@ -12,10 +12,10 @@ describe('Circle', () => {
       return true;
     },
     meta: {
-      interval: 60
+      interval: 60,
     },
     args: [],
-    time: -60
+    time: -60,
   };
 
   const args = { event: 'event' };
@@ -29,7 +29,7 @@ describe('Circle', () => {
     spyOn(MockedDate.prototype, 'getTime').and.returnValue({
       toString() {
         return 'random';
-      }
+      },
     });
 
     circle = new Circle();
@@ -73,7 +73,7 @@ describe('Circle', () => {
     spyOn(entry, 'write');
 
     circle.register(entry);
-    const entries = Array.from(circle.getEntries().values()).map(entry =>
+    const entries = Array.from(circle.getEntries().values()).map((entry) =>
       Object.assign({ payload }, entry)
     );
 

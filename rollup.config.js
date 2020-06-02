@@ -10,13 +10,13 @@ const config = {
     babel({
       exclude: 'node_modules/**',
       plugins: ['@babel/plugin-external-helpers'],
-      externalHelpers: true
+      externalHelpers: true,
     }),
     nodeResolve({
-      jsnext: true
+      jsnext: true,
     }),
-    commonjs()
-  ]
+    commonjs(),
+  ],
 };
 
 if (env === 'es' || env === 'cjs') {
@@ -32,8 +32,8 @@ if (env === 'umd') {
         pure_getters: true,
         unsafe: true,
         unsafe_comps: true,
-        warnings: false
-      }
+        warnings: false,
+      },
     })
   );
 }
