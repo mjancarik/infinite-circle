@@ -25,8 +25,8 @@ describe('Circle', () => {
   const MockedDate = toMock(Date);
 
   beforeEach(() => {
-    spyOn(MockedDate, 'now').and.returnValue(1);
-    spyOn(MockedDate.prototype, 'getTime').and.returnValue({
+    jest.spyOn(MockedDate, 'now').mockReturnValue(1);
+    jest.spyOn(MockedDate.prototype, 'getTime').mockReturnValue({
       toString() {
         return 'random';
       },
@@ -41,7 +41,7 @@ describe('Circle', () => {
   });
 
   it('should call listen method for registering first entry', () => {
-    spyOn(circle, '_listen');
+    jest.spyOn(circle, '_listen').mockImplementation();
 
     circle.register(entry);
 
@@ -50,7 +50,7 @@ describe('Circle', () => {
   });
 
   it('should call unlisten method for unregistering last entry', () => {
-    spyOn(circle, '_unlisten');
+    jest.spyOn(circle, '_unlisten').mockImplementation();
 
     const id = circle.register(entry);
     circle.unregister(id);
@@ -60,7 +60,7 @@ describe('Circle', () => {
   });
 
   it('should call read method which return right structure for write method', () => {
-    spyOn(entry, 'read').and.returnValue(payload);
+    jest.spyOn(entry, 'read').mockReturnValue(payload);
 
     circle.register(entry);
     const entries = Array.from(circle.getEntries().values());
@@ -70,7 +70,7 @@ describe('Circle', () => {
   });
 
   it('should call write method with right structure', () => {
-    spyOn(entry, 'write');
+    jest.spyOn(entry, 'write').mockImplementation();
 
     circle.register(entry);
     const entries = Array.from(circle.getEntries().values()).map((entry) =>
@@ -117,10 +117,10 @@ describe('Circle', () => {
     });
 
     it('should return empty array if all entries are filtered', () => {
-      MockedDate.now.and.returnValue(60);
+      MockedDate.now.mockReturnValue(60);
       circle.register(entry);
       let iterator = circle.execute(args);
-      MockedDate.now.and.returnValue(30);
+      MockedDate.now.mockReturnValue(30);
 
       let iterableObject = run(iterator);
 
@@ -128,24 +128,24 @@ describe('Circle', () => {
       expect(iterableObject.done).toBeTruthy();
     });
 
-    it('should return empty array if all entries are filtered', () => {
-      MockedDate.now.and.returnValue(60);
+    it('should return empty array if all entries are filtered 2', () => {
+      MockedDate.now.mockReturnValue(60);
       circle.register(entry);
       let iterator = circle.execute(args);
-      MockedDate.now.and.returnValue(61);
+      MockedDate.now.mockReturnValue(61);
 
       let iterableObject = run(iterator);
 
-      expect(iterableObject.value).toEqual([true]);
+      expect(iterableObject.value).toEqual([undefined]);
       expect(iterableObject.done).toBeTruthy();
     });
 
     it('should call notify method if all entries were not be called with defined arguments', () => {
-      spyOn(circle, 'notify');
-      MockedDate.now.and.returnValue(60);
+      jest.spyOn(circle, 'notify').mockImplementation();
+      MockedDate.now.mockReturnValue(60);
       circle.register(entry);
       let iterator = circle.execute(args);
-      MockedDate.now.and.returnValue(30);
+      MockedDate.now.mockReturnValue(30);
 
       let iterableObject = run(iterator);
 

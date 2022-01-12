@@ -2,6 +2,7 @@ import Infinite from '../Infinite';
 import { toMock } from 'to-mock';
 
 jest.useFakeTimers();
+jest.spyOn(global, 'setTimeout');
 
 describe('Infinite', () => {
   let infinite = null;

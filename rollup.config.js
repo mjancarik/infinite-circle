@@ -1,22 +1,29 @@
-import nodeResolve from 'rollup-plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import uglify from 'rollup-plugin-uglify';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import { getBabelOutputPlugin } from '@rollup/plugin-babel';
+import terser from 'rollup-plugin-terser';
+
+const babelConfig = {
+  babelrc: false,
+  presets: [
+    [
+      '@babel/env',
+      {
+        targets: {
+          node: '12',
+        },
+        modules: false,
+        useBuiltIns: 'usage',
+        corejs: { version: 3, proposals: false },
+      },
+    ],
+  ],
+};
 
 const env = process.env.NODE_ENV;
 const config = {
   input: 'src/main.js',
-  plugins: [
-    babel({
-      exclude: 'node_modules/**',
-      plugins: ['@babel/plugin-external-helpers'],
-      externalHelpers: true,
-    }),
-    nodeResolve({
-      jsnext: true,
-    }),
-    commonjs(),
-  ],
+  plugins: [getBabelOutputPlugin(babelConfig), nodeResolve()],
+  external: 'easy-uid',
 };
 
 if (env === 'es' || env === 'cjs') {
@@ -24,10 +31,10 @@ if (env === 'es' || env === 'cjs') {
 }
 
 if (env === 'umd') {
-  config.output = { format: 'umd', name: 'ConsumeMultipleContexts' };
+  config.output = { format: 'umd', name: 'InfiniteCircle' };
 
   config.plugins.push(
-    uglify({
+    terser({
       compress: {
         pure_getters: true,
         unsafe: true,

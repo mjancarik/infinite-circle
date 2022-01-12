@@ -12,7 +12,21 @@ Array [
       "interval": 60,
     },
     "payload": 111,
-    "read": [Function],
+    "read": [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "event": "event",
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": 111,
+        },
+      ],
+    },
     "time": 1,
     "write": [Function],
   },

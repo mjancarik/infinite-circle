@@ -1,12 +1,12 @@
 module.exports = {
   extends: ['eslint:recommended', 'prettier'],
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   rules: {
     'prettier/prettier': [
       'error',
       {
         singleQuote: true,
-        jsxBracketSameLine: true,
+        bracketSameLine: true,
       },
     ],
 
@@ -17,13 +17,14 @@ module.exports = {
       },
     ],
   },
-  plugins: ['prettier', 'jest', 'jasmine'],
+  plugins: ['@babel', 'prettier', 'jest', 'jasmine'],
   settings: {
     ecmascript: 2015,
   },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 6,
+    requireConfigFile: false,
   },
   env: {
     browser: true,
