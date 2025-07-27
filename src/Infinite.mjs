@@ -35,14 +35,14 @@ export default class Infinite {
 
   _execute(circles) {
     const iterators = circles.map(({ circle, args }) =>
-      circle.execute(...args)
+      circle.execute(...args),
     );
     let isNextStep = true;
 
     while (isNextStep) {
       isNextStep = !iterators.reduce(
         (end, iterator) => end && iterator.next().done,
-        true
+        true,
       );
     }
   }
@@ -51,7 +51,7 @@ export default class Infinite {
     if (this._nextExecutionTime <= Date.now()) {
       this._nextExecutionTime = 0;
 
-      let copyOfScheduledCircles = this._scheduledCircles.values();
+      const copyOfScheduledCircles = this._scheduledCircles.values();
       this._scheduledCircles = new Map();
 
       this._isSuspendedExecution = false;
@@ -68,6 +68,6 @@ export default class Infinite {
   }
 
   _requestAnimationFrame() {
-    return typeof window !== undefined && window.requestAnimationFrame;
+    return typeof window !== 'undefined' && window.requestAnimationFrame;
   }
 }

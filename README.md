@@ -1,11 +1,6 @@
 # infinite-circle
 
-[![Build Status](https://travis-ci.org/mjancarik/infinite-circle.svg?branch=master)](https://travis-ci.org/mjancarik/infinite-circle) [![dependencies Status](https://david-dm.org/mjancarik/infinite-circle/status.svg)](https://david-dm.org/mjancarik/infinite-circle)
-[![Coverage Status](https://coveralls.io/repos/github/mjancarik/infinite-circle/badge.svg?branch=master)](https://coveralls.io/github/mjancarik/infinite-circle?branch=master)
-[![NPM package version](https://img.shields.io/npm/v/infinite-circle/latest.svg)](https://www.npmjs.com/package/infinite-circle)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-The utility for synchronising reading and writing operation in browser. The infinite is a smart and automatic on and off loop for saving resources. It's use full for reading a writing operation on DOM which may normally cause layout thrashing.
+The utility for synchronising reading and writing operation in browser. The infinite is a smart and automatic on and off loop for saving resources. It's useful for reading and writing operations on the DOM which may normally cause layout thrashing.
 
 ## Installation
 
@@ -18,7 +13,7 @@ npm i infinite-circle --save
 ```javascript
 import { Circle, Infinite } from 'infinite-circle';
 
-// defined action which cause running read and write operation
+// Define actions which cause running read and write operation
 let visibilityCircle = new Circle({
     listen: notify => {
         window.addEventListener('scroll', notify);
@@ -30,24 +25,24 @@ let visibilityCircle = new Circle({
     }
 });
 
-// defined read and write operation
+// Define read and write operation
 const img1 = document.querySelector('.img1');
 let img1CircleId = visibilityCircle.register({
     read: () => {
         let rect = img1.getBoundingClientRect();
-
         return intersectionPercentage(rect);
     },
-    write({ payload }) => {
+    write({ payload }) {
         if (payload > 0) {
             loadImage(img1);
             visibilityCircle.unregister(img1CircleId);
         }
-    }
+    },
+    meta: { interval: 180 } // Optional, default 180
 });
-// register more elements
+// Register more elements as needed
 
-// register circle to synchronising infinite loop
+// Register circle to synchronise infinite loop
 let infinite = new Infinite();
 infinite.add(visibilityCircle);
 
@@ -65,3 +60,29 @@ function loadImage(imageElement) {
     .
 }
 ```
+
+---
+
+## Public API
+
+### Circle
+
+- **constructor({ listen, unlisten, filter, execute })**
+  - `listen(notify)`: Function to start listening for events (e.g., addEventListener). Optional.
+  - `unlisten(notify)`: Function to stop listening for events. Optional.
+  - `filter(entry, args)`: Optional filter function for entries.
+  - `execute(...args)`: Optional custom execution logic.
+
+- **register({ read, write, meta })**: Register an entry with `read` and `write` methods and optional `meta` (e.g., `{ interval: 180 }`). Returns an entry ID.
+- **unregister(id)**: Remove an entry by ID.
+- **getEntries()**: Get all registered entries as a Map.
+- **subscribe(listener)**: Subscribe to notifications. `listener` is called with arguments passed to `notify`.
+- **notify(...args)**: Notify all observers with the provided arguments.
+
+### Infinite
+
+- **constructor()**: Create a new Infinite instance.
+- **add(circle)**: Add a `Circle` instance to be managed.
+- **remove(circle)**: Remove a `Circle` instance.
+
+---

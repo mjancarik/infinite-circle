@@ -2,18 +2,30 @@
   "name": "infinite-circle",
   "version": "0.3.0",
   "description": "The utility for synchronising writing operation in browser.",
-  "main": "lib/infiniteCircle.js",
-  "module": "es/infiniteCircle.js",
+  "main": "dist/main",
+  "module": "dist/main",
+  "exports": {
+    ".": {
+      "import": "./dist/main.mjs",
+      "require": "./dist/main.js"
+    }
+  },
+  "sideEffects": false,
+  "typings": "dist/main.d.ts",
   "scripts": {
+    "lint": "biome check --no-errors-on-unmatched",
+    "lint:fix": "npm run lint -- --fix --unsafe",
+    "benchmark": "node benchmark/benchmark.ts",
+    "dev": "node_modules/.bin/tsup --dts --watch --onSuccess 'node ./dist/main.mjs'",
+    "test": "node --test --experimental-strip-types",
+    "test:watch": "npm run test -- --watch",
     "preversion": "npm test && npm run lint && npm run build",
-    "postversion": "npm run build && npm run changelog && git push && git push --tags && npm publish",
-    "lint": "node_modules/.bin/eslint -c ./.eslintrc.js --fix './**/*.{js,jsx}' --ignore-path ./.prettierignore",
-    "test": "node_modules/.bin/jest --no-watchman",
-    "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/infiniteCircle.js",
-    "build:es": "cross-env NODE_ENV=es rollup -c -o es/infiniteCircle.js",
-    "build": "npm run build:commonjs && npm run build:es",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
-    "commit": "node_modules/.bin/git-cz"
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags",
+    "commit": "node_modules/.bin/git-cz",
+    "changelog": "node_modules/.bin/conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
+    "build": "node_modules/.bin/tsup --dts",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -31,79 +43,37 @@
   "bugs": {
     "url": "https://github.com/mjancarik/infinite-circle/issues"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+  "lint-staged": {
+    "**/*.{ts,js,mjs}": "npm run lint"
   },
-  "homepage": "https://github.com/mjancarik/infinite-circle#readme",
-  "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/eslint-parser": "^7.16.5",
-    "@babel/eslint-plugin": "^7.16.5",
-    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
-    "@babel/preset-env": "^7.16.8",
-    "@commitlint/cli": "^16.0.2",
-    "@commitlint/config-conventional": "^16.0.0",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-node-resolve": "^13.1.3",
-    "commitizen": "^4.2.4",
-    "conventional-changelog-cli": "^2.2.2",
-    "coveralls": "^3.1.1",
-    "cross-env": "^7.0.3",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.6.0",
-    "eslint-config-last": "^0.0.5",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-jasmine": "^4.1.3",
-    "eslint-plugin-jest": "^25.3.4",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.28.0",
-    "husky": "^4.2.5",
-    "jest": "^27.4.7",
-    "jsdom": "^19.0.0",
-    "prettier": "^2.5.1",
-    "rollup": "^2.63.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "to-mock": "^1.6.2"
-  },
-  "jest": {
-    "bail": false,
-    "verbose": true,
-    "testEnvironment": "node",
-    "coverageThreshold": {
-      "global": {
-        "functions": 30,
-        "lines": 30,
-        "statements": 30
-      }
-    },
-    "collectCoverageFrom": [
-      "<rootDir>/src/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/setupJest.js"
-    ],
-    "modulePaths": [
-      "<rootDir>/"
-    ],
-    "testRegex": "(/__tests__/.*|(\\.|/)(Spec))\\.jsx?$"
-  },
-  "dependencies": {
-    "easy-uid": "^2.0.2"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "commit-msg": "node_modules/.bin/commitlint -e $GIT_PARAMS"
-    }
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "git-cz"
     }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "commitizen": "^4.3.1",
+    "conventional-changelog-cli": "^5.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "git-cz": "^4.9.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "to-mock": "^1.6.2",
+    "tsup": "^8.5.0"
+  },
+  "dependencies": {
+    "easy-uid": "^2.0.2"
   }
 }

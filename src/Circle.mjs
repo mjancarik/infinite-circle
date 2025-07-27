@@ -1,5 +1,5 @@
 import uid from 'easy-uid';
-import arraysEqual from './arraysEqual';
+import arraysEqual from './arraysEqual.mjs';
 
 export default class Circle {
   constructor({ listen, unlisten, filter, execute } = {}) {
@@ -33,7 +33,7 @@ export default class Circle {
   }
 
   register({ read, write, meta = { interval: 180 } }) {
-    let id = uid();
+    const id = uid();
 
     this._entries.set(id, {
       read,
@@ -68,7 +68,7 @@ export default class Circle {
     return circleEntries.map((entry) => {
       entry.time = now;
       entry.args = args;
-      let payload =
+      const payload =
         typeof entry.read === 'function' ? entry.read(...args) : null;
 
       return Object.assign({ payload }, entry);
@@ -89,7 +89,7 @@ export default class Circle {
     }
 
     this._lockCircle = true;
-    let modifiedEntries = yield* this._execute(...args);
+    const modifiedEntries = yield* this._execute(...args);
     this._lockCircle = false;
 
     const originalEntries = Array.from(this.getEntries().values());
