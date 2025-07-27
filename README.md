@@ -38,7 +38,7 @@ let img1CircleId = visibilityCircle.register({
             visibilityCircle.unregister(img1CircleId);
         }
     },
-    meta: { interval: 180 } // Optional, default 180
+    meta: { interval: 120 } // Optional, default 120
 });
 // Register more elements as needed
 

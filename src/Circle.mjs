@@ -10,6 +10,8 @@ export default class Circle {
     this._filter = filter || this._defaultFilter;
     this._execute = execute || ((...args) => this._defaultExecute(...args));
 
+    this._defaultMeta = { interval: 120 };
+
     this._entries = new Map();
     this._lockCircle = false;
 
@@ -32,8 +34,10 @@ export default class Circle {
     return this._entries;
   }
 
-  register({ read, write, meta = { interval: 180 } }) {
+  register({ read, write, meta = { interval: 120 } }) {
     const id = uid();
+
+    meta = Object.assign({}, this._defaultMeta, meta);
 
     this._entries.set(id, {
       read,
