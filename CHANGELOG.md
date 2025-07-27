@@ -1,3 +1,17 @@
+## 0.4.0 (2025-07-27)
+
+* feat: 🎸 change default interval to 120 ms ([e5c4075](https://github.com/mjancarik/infinite-circle/commit/e5c4075))
+* ci: 🎡 change main branch ([f1461a6](https://github.com/mjancarik/infinite-circle/commit/f1461a6))
+* refactor: 💡 update typo ([5d49dbe](https://github.com/mjancarik/infinite-circle/commit/5d49dbe))
+* chore: 🤖 update dev proccess and dev dependencies ([662bcb7](https://github.com/mjancarik/infinite-circle/commit/662bcb7))
+* chore: fix release process ([d20647d](https://github.com/mjancarik/infinite-circle/commit/d20647d))
+
+
+### BREAKING CHANGE
+
+* 🧨 The default interval is changed from 180 ms to 120 ms.
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/mjancarik/infinite-circle/compare/0.2.5...0.2.6) (2020-06-02)
 
